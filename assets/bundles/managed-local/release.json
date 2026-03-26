@@ -1,0 +1,177 @@
+{
+  "bundle_id": "managed-local",
+  "release_version": "0.5.0",
+  "version": "0.5.0",
+  "channel": "stable",
+  "digest": "sha256:managed-local-v0.5.0",
+  "signature": {
+    "scheme": "spider-dev-envelope-v1",
+    "key_id": "spider-dev-local",
+    "value": "managed-local-v0.5.0"
+  },
+  "trust": {
+    "mode": "signed",
+    "publisher": "SpiderVenoms",
+    "allow_dev_unsigned": false
+  },
+  "executables": [
+    {
+      "id": "local-service",
+      "source": {
+        "kind": "bundle_relative",
+        "path": "bin/spiderweb-local-service"
+      },
+      "stage_path": "bin/spiderweb-local-service"
+    },
+    {
+      "id": "computer-driver",
+      "source": {
+        "kind": "bundle_relative",
+        "path": "bin/spiderweb-computer-driver"
+      },
+      "stage_path": "bin/spiderweb-computer-driver",
+      "platforms": ["macos"]
+    },
+    {
+      "id": "browser-driver",
+      "source": {
+        "kind": "bundle_relative",
+        "path": "bin/spiderweb-browser-driver"
+      },
+      "stage_path": "bin/spiderweb-browser-driver",
+      "platforms": ["macos"]
+    }
+  ],
+  "packages": [
+    {
+      "package_id": "terminal",
+      "venom_id": "terminal",
+      "kind": "terminal",
+      "release_version": "0.5.0",
+      "version": "0.5.0",
+      "channel": "stable",
+      "digest": "sha256:terminal-v0.5.0",
+      "signature": {
+        "scheme": "spider-dev-envelope-v1",
+        "key_id": "spider-dev-local",
+        "value": "terminal-v0.5.0"
+      },
+      "trust": {
+        "mode": "signed",
+        "publisher": "SpiderVenoms",
+        "allow_dev_unsigned": false
+      },
+      "manifest_path": "manifests/terminal.json",
+      "executable_id": "local-service",
+      "template_bindings": {
+        "__EXPORT_ROOT__": {
+          "kind": "export_root"
+        }
+      }
+    },
+    {
+      "package_id": "git",
+      "venom_id": "git",
+      "kind": "git",
+      "release_version": "0.5.0",
+      "version": "0.5.0",
+      "channel": "stable",
+      "digest": "sha256:git-v0.5.0",
+      "signature": {
+        "scheme": "spider-dev-envelope-v1",
+        "key_id": "spider-dev-local",
+        "value": "git-v0.5.0"
+      },
+      "trust": {
+        "mode": "signed",
+        "publisher": "SpiderVenoms",
+        "allow_dev_unsigned": false
+      },
+      "manifest_path": "manifests/git.json",
+      "executable_id": "local-service",
+      "template_bindings": {
+        "__EXPORT_ROOT__": {
+          "kind": "export_root"
+        }
+      }
+    },
+    {
+      "package_id": "search_code",
+      "venom_id": "search_code",
+      "kind": "search_code",
+      "release_version": "0.5.0",
+      "version": "0.5.0",
+      "channel": "stable",
+      "digest": "sha256:search-code-v0.5.0",
+      "signature": {
+        "scheme": "spider-dev-envelope-v1",
+        "key_id": "spider-dev-local",
+        "value": "search-code-v0.5.0"
+      },
+      "trust": {
+        "mode": "signed",
+        "publisher": "SpiderVenoms",
+        "allow_dev_unsigned": false
+      },
+      "manifest_path": "manifests/search_code.json",
+      "executable_id": "local-service",
+      "template_bindings": {
+        "__EXPORT_ROOT__": {
+          "kind": "export_root"
+        }
+      }
+    },
+    {
+      "package_id": "computer",
+      "venom_id": "computer-main",
+      "kind": "computer",
+      "release_version": "0.5.0",
+      "version": "0.5.0",
+      "channel": "stable",
+      "digest": "sha256:computer-v0.5.0",
+      "signature": {
+        "scheme": "spider-dev-envelope-v1",
+        "key_id": "spider-dev-local",
+        "value": "computer-v0.5.0"
+      },
+      "trust": {
+        "mode": "signed",
+        "publisher": "SpiderVenoms",
+        "allow_dev_unsigned": false
+      },
+      "manifest_path": "manifests/computer.json",
+      "executable_id": "computer-driver"
+    },
+    {
+      "package_id": "browser",
+      "venom_id": "browser-main",
+      "kind": "browser",
+      "release_version": "0.5.0",
+      "version": "0.5.0",
+      "channel": "stable",
+      "digest": "sha256:browser-v0.5.0",
+      "signature": {
+        "scheme": "spider-dev-envelope-v1",
+        "key_id": "spider-dev-local",
+        "value": "browser-v0.5.0"
+      },
+      "trust": {
+        "mode": "signed",
+        "publisher": "SpiderVenoms",
+        "allow_dev_unsigned": false
+      },
+      "manifest_path": "manifests/browser.json",
+      "executable_id": "browser-driver",
+      "template_bindings": {
+        "__STATE_PATH__": {
+          "kind": "state_file",
+          "path": "browser/state.json"
+        },
+        "__PROFILE_DIR__": {
+          "kind": "state_dir",
+          "path": "browser/profile"
+        }
+      }
+    }
+  ]
+}

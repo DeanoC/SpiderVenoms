@@ -1,0 +1,69 @@
+{
+  "venom_id": "browser-main",
+  "package_id": "browser",
+  "kind": "browser",
+  "version": "1",
+  "release_version": "0.5.0",
+  "channel": "stable",
+  "digest": "sha256:browser-v0.5.0",
+  "signature": {
+    "scheme": "spider-dev-envelope-v1",
+    "key_id": "spider-dev-local",
+    "value": "browser-v0.5.0"
+  },
+  "trust": {
+    "mode": "signed",
+    "publisher": "SpiderVenoms",
+    "allow_dev_unsigned": false
+  },
+  "enabled": true,
+  "state": "online",
+  "categories": ["browser", "automation"],
+  "host_roles": ["node"],
+  "binding_scopes": ["workspace"],
+  "runtime_kind": "native",
+  "requirements": {
+    "host_capabilities": ["managed_browser"]
+  },
+  "endpoints": ["/nodes/{node_id}/venoms/browser-main"],
+  "mounts": [
+    {
+      "mount_id": "browser-main",
+      "mount_path": "/nodes/{node_id}/venoms/browser-main",
+      "state": "online"
+    }
+  ],
+  "capabilities": {
+    "invoke": true,
+    "observe": true,
+    "act": true
+  },
+  "ops": {
+    "model": "namespace",
+    "invoke": "control/invoke.json",
+    "paths": {
+      "invoke": "control/invoke.json"
+    }
+  },
+  "runtime": {
+    "type": "native_proc",
+    "abi": "namespace-driver-v1",
+    "executable_path": "__EXECUTABLE_PATH__",
+    "env": {
+      "SPIDERWEB_BROWSER_STATE_PATH": "__STATE_PATH__",
+      "SPIDERWEB_BROWSER_PROFILE_DIR": "__PROFILE_DIR__"
+    },
+    "timeout_ms": 60000
+  },
+  "permissions": {
+    "default": "deny-by-default"
+  },
+  "schema": {
+    "model": "browser-observe-act-v1"
+  },
+  "invoke_template": {
+    "op": "observe",
+    "arguments": {}
+  },
+  "help_md": "Managed local browser capability published from SpiderVenoms."
+}

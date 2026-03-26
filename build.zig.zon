@@ -1,0 +1,28 @@
+.{
+    .name = .spider_venoms,
+    .version = "0.5.0",
+    .fingerprint = 0xff0d3f73aa16a623,
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{
+        .spider_node = .{
+            .path = "../Spiderweb/deps/spider-node",
+        },
+        .spider_protocol = .{
+            .path = "../Spiderweb/deps/spider-protocol",
+        },
+        .ziggy_tool_runtime = .{
+            .path = "../Spiderweb/deps/ziggy-tool-runtime",
+        },
+    },
+    .paths = .{
+        ".github",
+        "README.md",
+        "build.zig",
+        "build.zig.zon",
+        "CHANGELOG.md",
+        "assets",
+        "docs",
+        "scripts",
+        "src",
+    },
+}

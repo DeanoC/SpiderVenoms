@@ -1,0 +1,67 @@
+{
+  "venom_id": "computer-main",
+  "package_id": "computer",
+  "kind": "computer",
+  "version": "1",
+  "release_version": "0.5.0",
+  "channel": "stable",
+  "digest": "sha256:computer-v0.5.0",
+  "signature": {
+    "scheme": "spider-dev-envelope-v1",
+    "key_id": "spider-dev-local",
+    "value": "computer-v0.5.0"
+  },
+  "trust": {
+    "mode": "signed",
+    "publisher": "SpiderVenoms",
+    "allow_dev_unsigned": false
+  },
+  "enabled": true,
+  "state": "online",
+  "categories": ["desktop", "automation"],
+  "host_roles": ["node"],
+  "binding_scopes": ["workspace"],
+  "runtime_kind": "native",
+  "requirements": {
+    "host_capabilities": ["macos_accessibility", "screen_capture"]
+  },
+  "endpoints": ["/nodes/{node_id}/venoms/computer-main"],
+  "mounts": [
+    {
+      "mount_id": "computer-main",
+      "mount_path": "/nodes/{node_id}/venoms/computer-main",
+      "state": "online"
+    }
+  ],
+  "capabilities": {
+    "invoke": true,
+    "observe": true,
+    "act": true
+  },
+  "ops": {
+    "model": "namespace",
+    "invoke": "control/invoke.json",
+    "paths": {
+      "invoke": "control/invoke.json"
+    }
+  },
+  "runtime": {
+    "type": "native_proc",
+    "abi": "namespace-driver-v1",
+    "executable_path": "__EXECUTABLE_PATH__",
+    "timeout_ms": 60000
+  },
+  "permissions": {
+    "default": "deny-by-default"
+  },
+  "schema": {
+    "model": "computer-observe-act-v1"
+  },
+  "invoke_template": {
+    "op": "observe",
+    "arguments": {
+      "include_screenshot": true
+    }
+  },
+  "help_md": "Managed local computer capability published from SpiderVenoms."
+}

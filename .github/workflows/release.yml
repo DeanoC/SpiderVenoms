@@ -1,0 +1,111 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  linux-release:
+    name: linux-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SpiderVenoms
+        uses: actions/checkout@v4
+        with:
+          path: SpiderVenoms
+
+      - name: Checkout Spiderweb
+        uses: actions/checkout@v4
+        with:
+          repository: DeanoC/Spiderweb
+          path: Spiderweb
+          submodules: recursive
+
+      - name: Install Zig
+        uses: mlugg/setup-zig@v2
+        with:
+          version: 0.15.1
+
+      - name: Resolve release metadata
+        id: meta
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          version="$(sed -n 's/.*\.version = "\(.*\)",/\1/p' build.zig.zon | head -n1)"
+          arch="$(uname -m)"
+          case "$arch" in
+            x86_64|amd64) arch_label="x86_64" ;;
+            aarch64|arm64) arch_label="aarch64" ;;
+            *) arch_label="$arch" ;;
+          esac
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "arch_label=$arch_label" >> "$GITHUB_OUTPUT"
+          echo "archive_path=SpiderVenoms/dist/spidervenoms-managed-local-linux-${arch_label}.tar.gz" >> "$GITHUB_OUTPUT"
+          echo "archive_sha_path=SpiderVenoms/dist/spidervenoms-managed-local-linux-${arch_label}.tar.gz.sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Validate version sync
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          bash ./scripts/check-version-sync.sh
+
+      - name: Validate tag matches build version
+        if: github.ref_type == 'tag'
+        run: |
+          set -euo pipefail
+          expected_tag="v${{ steps.meta.outputs.version }}"
+          actual_tag="${GITHUB_REF_NAME}"
+          if [[ "$actual_tag" != "$expected_tag" ]]; then
+            echo "Tag/version mismatch: expected ${expected_tag}, got ${actual_tag}" >&2
+            exit 1
+          fi
+
+      - name: Build and test
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          zig build test
+          zig build bundle
+
+      - name: Build Linux release archive
+        working-directory: SpiderVenoms
+        env:
+          SPIDERWEB_REPO_DIR: ${{ github.workspace }}/Spiderweb
+        run: |
+          set -euo pipefail
+          bash ./scripts/package-spidervenoms-linux-release.sh --out-dir "$PWD/dist"
+
+      - name: Verify release archive contents
+        run: |
+          set -euo pipefail
+          archive="${{ steps.meta.outputs.archive_path }}"
+          sha_path="${{ steps.meta.outputs.archive_sha_path }}"
+          test -f "$archive"
+          test -f "$sha_path"
+          tar -tzf "$archive" | grep -q 'share/spidervenoms/bundles/managed-local/release.json'
+          tar -tzf "$archive" | grep -q 'bin/spiderweb-local-service'
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spidervenoms-managed-local-linux-${{ steps.meta.outputs.arch_label }}
+          path: |
+            ${{ steps.meta.outputs.archive_path }}
+            ${{ steps.meta.outputs.archive_sha_path }}
+          if-no-files-found: error
+
+      - name: Publish GitHub release assets
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ steps.meta.outputs.archive_path }}
+            ${{ steps.meta.outputs.archive_sha_path }}
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          prerelease: ${{ contains(github.ref_name, '-') }}

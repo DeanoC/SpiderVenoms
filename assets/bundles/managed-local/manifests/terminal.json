@@ -1,0 +1,68 @@
+{
+  "venom_id": "terminal",
+  "package_id": "terminal",
+  "kind": "terminal",
+  "version": "1",
+  "release_version": "0.5.0",
+  "channel": "stable",
+  "digest": "sha256:terminal-v0.5.0",
+  "signature": {
+    "scheme": "spider-dev-envelope-v1",
+    "key_id": "spider-dev-local",
+    "value": "terminal-v0.5.0"
+  },
+  "trust": {
+    "mode": "signed",
+    "publisher": "SpiderVenoms",
+    "allow_dev_unsigned": false
+  },
+  "state": "online",
+  "categories": ["terminal", "exec"],
+  "host_roles": ["node"],
+  "binding_scopes": ["workspace"],
+  "runtime_kind": "native",
+  "requirements": {},
+  "endpoints": ["/nodes/{node_id}/venoms/terminal"],
+  "mounts": [
+    {
+      "mount_id": "terminal",
+      "mount_path": "/nodes/{node_id}/venoms/terminal",
+      "state": "online"
+    }
+  ],
+  "capabilities": {
+    "invoke": true,
+    "discoverable": true,
+    "operations": ["exec"]
+  },
+  "ops": {
+    "model": "namespace",
+    "invoke": "control/invoke.json",
+    "paths": {
+      "invoke": "control/invoke.json"
+    }
+  },
+  "runtime": {
+    "type": "native_proc",
+    "abi": "namespace-driver-v1",
+    "executable_path": "__EXECUTABLE_PATH__",
+    "args": ["terminal", "__EXPORT_ROOT__"],
+    "timeout_ms": 300000
+  },
+  "permissions": {
+    "default": "allow-by-default",
+    "allow_roles": ["admin", "user"],
+    "scope": "project"
+  },
+  "schema": {
+    "model": "namespace-mount"
+  },
+  "invoke_template": {
+    "op": "exec",
+    "arguments": {
+      "command": "pwd",
+      "cwd": "/nodes/local/fs"
+    }
+  },
+  "help_md": "Workspace terminal service published from the SpiderVenoms managed local bundle."
+}

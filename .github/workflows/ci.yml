@@ -1,0 +1,93 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  linux-build-test-and-package:
+    name: linux-build-test-and-package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout SpiderVenoms
+        uses: actions/checkout@v4
+        with:
+          path: SpiderVenoms
+
+      - name: Checkout Spiderweb
+        uses: actions/checkout@v4
+        with:
+          repository: DeanoC/Spiderweb
+          path: Spiderweb
+          submodules: recursive
+
+      - name: Install Zig
+        uses: mlugg/setup-zig@v2
+        with:
+          version: 0.15.1
+
+      - name: Validate version sync
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          bash ./scripts/check-version-sync.sh
+
+      - name: Build and test
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          zig build test
+          zig build bundle
+
+      - name: Build Linux release archive
+        working-directory: SpiderVenoms
+        env:
+          SPIDERWEB_REPO_DIR: ${{ github.workspace }}/Spiderweb
+        run: |
+          set -euo pipefail
+          bash ./scripts/package-spidervenoms-linux-release.sh --out-dir "$PWD/dist"
+
+      - name: Verify release archive contents
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          archive_path="$PWD/dist/spidervenoms-managed-local-linux-$(uname -m | sed 's/amd64/x86_64/; s/arm64/aarch64/').tar.gz"
+          sha_path="${archive_path}.sha256"
+          test -f "$archive_path"
+          test -f "$sha_path"
+          tar -tzf "$archive_path" | grep -q 'share/spidervenoms/bundles/managed-local/release.json'
+          tar -tzf "$archive_path" | grep -q 'bin/spiderweb-local-service'
+
+  macos-build-and-test:
+    name: macos-build-and-test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout SpiderVenoms
+        uses: actions/checkout@v4
+        with:
+          path: SpiderVenoms
+
+      - name: Checkout Spiderweb
+        uses: actions/checkout@v4
+        with:
+          repository: DeanoC/Spiderweb
+          path: Spiderweb
+          submodules: recursive
+
+      - name: Install Zig
+        uses: mlugg/setup-zig@v2
+        with:
+          version: 0.15.1
+
+      - name: Validate version sync
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          bash ./scripts/check-version-sync.sh
+
+      - name: Build and test
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          zig build
+          zig build test
