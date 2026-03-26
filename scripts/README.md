@@ -57,3 +57,15 @@ This produces:
 
 - `dist/spidervenoms-managed-local-macos-<arch>.tar.gz`
 - `dist/spidervenoms-managed-local-macos-<arch>.tar.gz.sha256`
+
+Machine-readable release facts for registry generation:
+
+```bash
+python3 ./scripts/render_release_facts.py \
+  --resolve-published-checksums \
+  --out ./dist/spidervenoms-release-facts.json
+```
+
+This produces:
+
+- `dist/spidervenoms-release-facts.json`

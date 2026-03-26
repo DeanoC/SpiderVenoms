@@ -62,6 +62,12 @@ Version consistency check:
 ./scripts/check-version-sync.sh
 ```
 
+Render machine-readable release facts for SpiderVenomRegistry:
+
+```bash
+python3 ./scripts/render_release_facts.py --out ./dist/spidervenoms-release-facts.json
+```
+
 Managed key policy validation:
 
 ```bash
@@ -113,3 +119,9 @@ Notes:
 - `assets/bundles/managed-local/manifests/*.json`
 
 Maintainer tooling validates these before release.
+
+Tagged release automation also publishes `spidervenoms-release-facts.json`, which is the
+registry-facing artifact describing the release version, package ids, and per-platform
+archive URLs/checksums. The release workflow resolves those checksums from the published
+GitHub release `.sha256` assets so the registry-facing facts match what consumers can
+actually download.
