@@ -61,6 +61,7 @@ jobs:
         run: |
           set -euo pipefail
           bash ./scripts/test_managed_bundle_policy.sh
+          bash ./scripts/test_managed_bundle_key_workflow.sh
 
       - name: Build and test
         working-directory: SpiderVenoms
@@ -129,6 +130,7 @@ jobs:
         run: |
           set -euo pipefail
           bash ./scripts/test_managed_bundle_policy.sh
+          bash ./scripts/test_managed_bundle_key_workflow.sh
 
       - name: Build and test
         working-directory: SpiderVenoms

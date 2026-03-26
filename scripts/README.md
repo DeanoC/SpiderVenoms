@@ -16,6 +16,15 @@ Version consistency check:
 ./scripts/check-version-sync.sh
 ```
 
+Managed bundle key workflow:
+
+```bash
+./scripts/manage_managed_bundle_keys.py list
+./scripts/manage_managed_bundle_keys.py validate
+./scripts/manage_managed_bundle_keys.py rotate --new-key-id spidervenoms-2026-04 --private-key-out ./keys/private/spidervenoms-2026-04.pem
+./scripts/manage_managed_bundle_keys.py revoke --key-id spidervenoms-2026-04 --reason "Compromised signing host"
+```
+
 See [../docs/release-policy.md](/Users/deanocalver/Documents/Projects/Spider/SpiderVenoms/docs/release-policy.md) for the full release policy.
 
 ## Release Packaging

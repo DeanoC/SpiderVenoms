@@ -22,6 +22,7 @@
         "CHANGELOG.md",
         "assets",
         "docs",
+        "keys",
         "scripts",
         "src",
     },
