@@ -29,6 +29,7 @@ See [docs/release-policy.md](docs/release-policy.md) for the maintainer workflow
 
 - CI validates version sync, builds the bundle, and exercises the release packager.
 - Tagged releases publish Linux and macOS managed-bundle archives for the current release line.
+- Tagged releases also publish `spidervenoms-release-facts.json` for SpiderVenomRegistry generation, resolved against the published release checksum assets.
 - Maintainers sign `release.json` and `manifests/*.json` with `./scripts/managed_bundle_envelope.py sign`.
 - Maintainers manage key rotation and revocation with `./scripts/manage_managed_bundle_keys.py`.
 - Trusted keys now carry explicit policy metadata:

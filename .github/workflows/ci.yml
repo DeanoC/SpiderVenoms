@@ -98,6 +98,15 @@ jobs:
           assert any(name.endswith("bin/spiderweb-local-service") for name in names)
           PY
 
+      - name: Upload packaged artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spidervenoms-packages-linux-${{ matrix.arch_label }}
+          path: |
+            SpiderVenoms/dist/spidervenoms-managed-local-linux-${{ matrix.arch_label }}.tar.gz
+            SpiderVenoms/dist/spidervenoms-managed-local-linux-${{ matrix.arch_label }}.tar.gz.sha256
+          if-no-files-found: error
+
   macos-build-and-test:
     name: macos-build-and-test
     runs-on: macos-latest
@@ -166,3 +175,45 @@ jobs:
           assert any(name.endswith("share/spidervenoms/bundles/managed-local/release.json") for name in names)
           assert any(name.endswith("bin/spiderweb-local-service") for name in names)
           PY
+
+      - name: Upload packaged artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spidervenoms-packages-macos
+          path: |
+            SpiderVenoms/dist/spidervenoms-managed-local-macos-*.tar.gz
+            SpiderVenoms/dist/spidervenoms-managed-local-macos-*.tar.gz.sha256
+          if-no-files-found: error
+
+  release-facts:
+    name: release-facts
+    runs-on: ubuntu-latest
+    needs:
+      - linux-build-test-and-package
+      - macos-build-and-test
+    steps:
+      - name: Checkout SpiderVenoms
+        uses: actions/checkout@v4
+        with:
+          path: SpiderVenoms
+
+      - name: Download packaged artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: spidervenoms-packages-*
+          merge-multiple: true
+          path: SpiderVenoms/dist
+
+      - name: Generate release facts
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          python3 ./scripts/render_release_facts.py --out "$PWD/dist/spidervenoms-release-facts.json"
+          test -f "$PWD/dist/spidervenoms-release-facts.json"
+
+      - name: Upload release facts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spidervenoms-release-facts
+          path: SpiderVenoms/dist/spidervenoms-release-facts.json
+          if-no-files-found: error

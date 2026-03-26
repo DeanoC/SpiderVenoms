@@ -259,3 +259,47 @@ jobs:
           generate_release_notes: true
           fail_on_unmatched_files: true
           prerelease: ${{ contains(github.ref_name, '-') }}
+
+  release-facts:
+    name: release-facts
+    runs-on: ubuntu-latest
+    needs:
+      - linux-release
+      - macos-release
+    steps:
+      - name: Checkout SpiderVenoms
+        uses: actions/checkout@v4
+        with:
+          path: SpiderVenoms
+
+      - name: Download packaged artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: spidervenoms-managed-local-*
+          merge-multiple: true
+          path: SpiderVenoms/dist
+
+      - name: Generate release facts
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          python3 ./scripts/render_release_facts.py \
+            --resolve-published-checksums \
+            --out "$PWD/dist/spidervenoms-release-facts.json"
+          test -f "$PWD/dist/spidervenoms-release-facts.json"
+
+      - name: Upload release facts artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: spidervenoms-release-facts
+          path: SpiderVenoms/dist/spidervenoms-release-facts.json
+          if-no-files-found: error
+
+      - name: Publish GitHub release facts
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: SpiderVenoms/dist/spidervenoms-release-facts.json
+          generate_release_notes: false
+          fail_on_unmatched_files: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
