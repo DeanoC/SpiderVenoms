@@ -18,6 +18,7 @@ REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 DEFAULT_RELEASE_PATH = REPO_ROOT / "assets" / "bundles" / "managed-local" / "release.json"
 DEFAULT_KEYS_PATH = REPO_ROOT / "keys" / "trusted-managed-bundle-keys.json"
 SIGNATURE_SCHEME = "ed25519-sha256-v1"
+MANAGED_BUNDLE_PURPOSE = "managed_local_bundle"
 
 
 def fail(message: str) -> "NoReturn":
@@ -63,11 +64,46 @@ def write_json(path: pathlib.Path, value: Any) -> None:
     path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n")
 
 
-def load_trusted_keys(keys_path: pathlib.Path) -> dict[str, dict[str, str]]:
+def load_trusted_keys(keys_path: pathlib.Path) -> dict[str, dict[str, Any]]:
     keys = load_json(keys_path)
     if not isinstance(keys, dict) or not keys:
         fail(f"trusted key store is empty: {keys_path}")
     return keys
+
+
+def require_trusted_key_policy(
+    trusted_keys: dict[str, dict[str, Any]],
+    key_id: str,
+    *,
+    allow_signing: bool,
+    label: str,
+) -> dict[str, Any]:
+    trusted_key = trusted_keys.get(key_id)
+    if trusted_key is None:
+        fail(f"{label}: untrusted key id: {key_id}")
+    if trusted_key.get("publisher") != "SpiderVenoms":
+        fail(f"{label}: unexpected key publisher for {key_id}")
+    if trusted_key.get("scheme") != SIGNATURE_SCHEME:
+        fail(f"{label}: trusted key store scheme mismatch for {key_id}")
+
+    bundle_purposes = trusted_key.get("bundle_purposes")
+    if not isinstance(bundle_purposes, list) or MANAGED_BUNDLE_PURPOSE not in bundle_purposes:
+        fail(f"{label}: key {key_id} is not trusted for {MANAGED_BUNDLE_PURPOSE}")
+
+    status = trusted_key.get("status")
+    if status not in {"active", "revoked"}:
+        fail(f"{label}: unsupported key status for {key_id}: {status!r}")
+    if status == "revoked":
+        revoked_at = trusted_key.get("revoked_at") or "<unknown>"
+        reason = trusted_key.get("revocation_reason") or "no reason provided"
+        fail(f"{label}: key {key_id} was revoked at {revoked_at}: {reason}")
+
+    usage = trusted_key.get("usage")
+    if usage not in {"sign_and_verify", "verify_only"}:
+        fail(f"{label}: unsupported key usage for {key_id}: {usage!r}")
+    if allow_signing and usage != "sign_and_verify":
+        fail(f"{label}: key {key_id} cannot sign new managed bundles")
+    return trusted_key
 
 
 def resolve_openssl() -> str:
@@ -190,11 +226,7 @@ def verify_object(value: dict[str, Any], trusted_keys: dict[str, dict[str, str]]
         fail(f"{label}: unsupported signature scheme: {scheme!r}")
     if not isinstance(key_id, str) or not key_id:
         fail(f"{label}: missing signature key_id")
-    trusted_key = trusted_keys.get(key_id)
-    if trusted_key is None:
-        fail(f"{label}: untrusted key id: {key_id}")
-    if trusted_key.get("scheme") != SIGNATURE_SCHEME:
-        fail(f"{label}: trusted key store scheme mismatch for {key_id}")
+    trusted_key = require_trusted_key_policy(trusted_keys, key_id, allow_signing=False, label=label)
     if not isinstance(signature_value, str) or not signature_value:
         fail(f"{label}: missing signature value")
     verify_digest_signature(trusted_key["public_key_hex"], digest_hex, signature_value)
@@ -236,8 +268,7 @@ def verify_bundle(release_path: pathlib.Path, keys_path: pathlib.Path) -> None:
 
 def sign_bundle(release_path: pathlib.Path, keys_path: pathlib.Path, key_id: str, private_key_path: pathlib.Path) -> None:
     trusted_keys = load_trusted_keys(keys_path)
-    if key_id not in trusted_keys:
-        fail(f"unknown signing key id: {key_id}")
+    require_trusted_key_policy(trusted_keys, key_id, allow_signing=True, label=str(release_path))
 
     release = load_json(release_path)
     if not isinstance(release, dict):

@@ -3,13 +3,13 @@
   "package_id": "search_code",
   "kind": "search_code",
   "version": "1",
-  "release_version": "0.5.6",
+  "release_version": "0.5.7",
   "channel": "stable",
-  "digest": "sha256:9b6649bf7556779148c549bfc50d2a7071305fe8dd8c1eb17e1069d3f26799b3",
+  "digest": "sha256:24a63017c30de0e13fde61a6f12be42bafc7707fbee3cd457b1271eb94e857cb",
   "signature": {
     "scheme": "ed25519-sha256-v1",
     "key_id": "spidervenoms-dev-2026-03",
-    "value": "ommtxeWCF74x+g3240qeCt/6711/lm1+FBEINPaZ0wtU7nV4EagNZ/rqT/tKGy8eHvKe1S2A/Be39J8XK/LdDg=="
+    "value": "yOFJ5bF1NOLBlIYueEXLmPVlV7O6tMriiYcT+Ue9a8CjLqQFxzY9A2SHSnIwsb/5+8V0JHuVFWG4CEwYWwytCA=="
   },
   "trust": {
     "mode": "signed",

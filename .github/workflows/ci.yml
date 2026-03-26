@@ -56,6 +56,12 @@ jobs:
           set -euo pipefail
           bash ./scripts/check-version-sync.sh
 
+      - name: Run managed bundle policy checks
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          bash ./scripts/test_managed_bundle_policy.sh
+
       - name: Build and test
         working-directory: SpiderVenoms
         run: |
@@ -117,6 +123,12 @@ jobs:
         run: |
           set -euo pipefail
           bash ./scripts/check-version-sync.sh
+
+      - name: Run managed bundle policy checks
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          bash ./scripts/test_managed_bundle_policy.sh
 
       - name: Build and test
         working-directory: SpiderVenoms

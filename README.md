@@ -30,6 +30,10 @@ See [docs/release-policy.md](docs/release-policy.md) for the maintainer workflow
 - CI validates version sync, builds the bundle, and exercises the release packager.
 - Tagged releases publish Linux and macOS managed-bundle archives for the current release line.
 - Maintainers sign `release.json` and `manifests/*.json` with `./scripts/managed_bundle_envelope.py sign`.
+- Trusted keys now carry explicit policy metadata:
+  - `status`: `active` or `revoked`
+  - `usage`: `sign_and_verify` or `verify_only`
+  - `bundle_purposes`: currently `managed_local_bundle`
 
 Packaging helper:
 

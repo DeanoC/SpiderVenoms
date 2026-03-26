@@ -3,13 +3,13 @@
   "package_id": "terminal",
   "kind": "terminal",
   "version": "1",
-  "release_version": "0.5.6",
+  "release_version": "0.5.7",
   "channel": "stable",
-  "digest": "sha256:5712dc7dca568ac27d5bcdda02ea9d1ebfa9ae1b221f31ca4a15a309903a6cf2",
+  "digest": "sha256:be6e676044a020d9b2f083ad86b89d8b2c140f8178087cf1c852717b6c0f7808",
   "signature": {
     "scheme": "ed25519-sha256-v1",
     "key_id": "spidervenoms-dev-2026-03",
-    "value": "51JvObbRtr0e7JisaV6ZhF5h8ABjJThf3No5QrDUffYVLW1sqDDwU/1iz6snMM3y/1NFZd7vXxKWYBNUP2n8Dw=="
+    "value": "YhUDfXVQ2JHQRiGUJcL2EYSe6cQ4J9i2I4agy19rDxAxzJq2CieoT997C0txYzeS7AWjQ0RPt7mNkXpXetZqDw=="
   },
   "trust": {
     "mode": "signed",

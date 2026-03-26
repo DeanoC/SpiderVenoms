@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.7 - 2026-03-26
+
+### Key Policy
+- Added explicit signing-key policy metadata for managed bundles, including key status, usage mode, bundle purpose, and revocation metadata.
+- Added negative-path policy checks that reject tampered bundles, revoked keys, wrong-purpose keys, and verify-only signing attempts in CI.
+
 ## 0.5.6 - 2026-03-26
 
 ### Release Automation
