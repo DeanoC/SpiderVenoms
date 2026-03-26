@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.3 - 2026-03-26
+
+### Linux Release Coverage
+- Added native Linux `arm64` managed-bundle release archives alongside `x86_64` so downstream consumers can pin SpiderVenoms on both supported Linux architectures.
+- Updated CI and tag-release automation to build, verify, and publish both Linux architectures with normalized `arm64`/`x86_64` artifact names.
+
 ## 0.5.2 - 2026-03-26
 
 ### Release Packaging

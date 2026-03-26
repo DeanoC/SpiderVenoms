@@ -6,8 +6,16 @@ on:
 
 jobs:
   linux-build-test-and-package:
-    name: linux-build-test-and-package
-    runs-on: ubuntu-latest
+    name: linux-build-test-and-package (${{ matrix.arch_label }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            arch_label: x86_64
+          - runner: ubuntu-24.04-arm
+            arch_label: arm64
+    runs-on: ${{ matrix.runner }}
     steps:
       - name: Checkout SpiderVenoms
         uses: actions/checkout@v4
@@ -51,7 +59,7 @@ jobs:
         working-directory: SpiderVenoms
         run: |
           set -euo pipefail
-          archive_path="$PWD/dist/spidervenoms-managed-local-linux-$(uname -m | sed 's/amd64/x86_64/; s/arm64/aarch64/').tar.gz"
+          archive_path="$PWD/dist/spidervenoms-managed-local-linux-${{ matrix.arch_label }}.tar.gz"
           sha_path="${archive_path}.sha256"
           test -f "$archive_path"
           test -f "$sha_path"

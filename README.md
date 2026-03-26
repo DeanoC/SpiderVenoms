@@ -19,7 +19,7 @@ manifests and release metadata from here.
 
 ## Release line
 
-- Current public release line: `0.5.2`
+- Current public release line: `0.5.3`
 - Release tags use `vX.Y.Z`
 - Default policy is patch-first release bumps
 

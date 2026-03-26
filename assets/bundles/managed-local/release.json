@@ -1,13 +1,13 @@
 {
   "bundle_id": "managed-local",
-  "release_version": "0.5.2",
-  "version": "0.5.2",
+  "release_version": "0.5.3",
+  "version": "0.5.3",
   "channel": "stable",
-  "digest": "sha256:managed-local-v0.5.2",
+  "digest": "sha256:managed-local-v0.5.3",
   "signature": {
     "scheme": "spider-dev-envelope-v1",
     "key_id": "spider-dev-local",
-    "value": "managed-local-v0.5.2"
+    "value": "managed-local-v0.5.3"
   },
   "trust": {
     "mode": "signed",
@@ -47,14 +47,14 @@
       "package_id": "terminal",
       "venom_id": "terminal",
       "kind": "terminal",
-      "release_version": "0.5.2",
-      "version": "0.5.2",
+      "release_version": "0.5.3",
+      "version": "0.5.3",
       "channel": "stable",
-      "digest": "sha256:terminal-v0.5.2",
+      "digest": "sha256:terminal-v0.5.3",
       "signature": {
         "scheme": "spider-dev-envelope-v1",
         "key_id": "spider-dev-local",
-        "value": "terminal-v0.5.2"
+        "value": "terminal-v0.5.3"
       },
       "trust": {
         "mode": "signed",
@@ -73,14 +73,14 @@
       "package_id": "git",
       "venom_id": "git",
       "kind": "git",
-      "release_version": "0.5.2",
-      "version": "0.5.2",
+      "release_version": "0.5.3",
+      "version": "0.5.3",
       "channel": "stable",
-      "digest": "sha256:git-v0.5.2",
+      "digest": "sha256:git-v0.5.3",
       "signature": {
         "scheme": "spider-dev-envelope-v1",
         "key_id": "spider-dev-local",
-        "value": "git-v0.5.2"
+        "value": "git-v0.5.3"
       },
       "trust": {
         "mode": "signed",
@@ -99,14 +99,14 @@
       "package_id": "search_code",
       "venom_id": "search_code",
       "kind": "search_code",
-      "release_version": "0.5.2",
-      "version": "0.5.2",
+      "release_version": "0.5.3",
+      "version": "0.5.3",
       "channel": "stable",
-      "digest": "sha256:search-code-v0.5.2",
+      "digest": "sha256:search-code-v0.5.3",
       "signature": {
         "scheme": "spider-dev-envelope-v1",
         "key_id": "spider-dev-local",
-        "value": "search-code-v0.5.2"
+        "value": "search-code-v0.5.3"
       },
       "trust": {
         "mode": "signed",
@@ -125,14 +125,14 @@
       "package_id": "computer",
       "venom_id": "computer-main",
       "kind": "computer",
-      "release_version": "0.5.2",
-      "version": "0.5.2",
+      "release_version": "0.5.3",
+      "version": "0.5.3",
       "channel": "stable",
-      "digest": "sha256:computer-v0.5.2",
+      "digest": "sha256:computer-v0.5.3",
       "signature": {
         "scheme": "spider-dev-envelope-v1",
         "key_id": "spider-dev-local",
-        "value": "computer-v0.5.2"
+        "value": "computer-v0.5.3"
       },
       "trust": {
         "mode": "signed",
@@ -146,14 +146,14 @@
       "package_id": "browser",
       "venom_id": "browser-main",
       "kind": "browser",
-      "release_version": "0.5.2",
-      "version": "0.5.2",
+      "release_version": "0.5.3",
+      "version": "0.5.3",
       "channel": "stable",
-      "digest": "sha256:browser-v0.5.2",
+      "digest": "sha256:browser-v0.5.3",
       "signature": {
         "scheme": "spider-dev-envelope-v1",
         "key_id": "spider-dev-local",
-        "value": "browser-v0.5.2"
+        "value": "browser-v0.5.3"
       },
       "trust": {
         "mode": "signed",

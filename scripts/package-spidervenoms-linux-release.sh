@@ -32,7 +32,7 @@ require_command() {
 ARCH="$(uname -m)"
 case "$ARCH" in
   x86_64|amd64) ARCH_LABEL="x86_64" ;;
-  aarch64|arm64) ARCH_LABEL="aarch64" ;;
+  aarch64|arm64) ARCH_LABEL="arm64" ;;
   *) ARCH_LABEL="$ARCH" ;;
 esac
 
