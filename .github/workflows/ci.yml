@@ -100,3 +100,31 @@ jobs:
           set -euo pipefail
           zig build
           zig build test
+
+      - name: Build macOS release archive
+        working-directory: SpiderVenoms
+        env:
+          SPIDERWEB_REPO_DIR: ${{ github.workspace }}/Spiderweb
+        run: |
+          set -euo pipefail
+          bash ./scripts/package-spidervenoms-macos-release.sh --out-dir "$PWD/dist"
+
+      - name: Verify macOS release archive contents
+        working-directory: SpiderVenoms
+        run: |
+          set -euo pipefail
+          archive_path="$PWD/dist/spidervenoms-managed-local-macos-$(uname -m | sed 's/amd64/x86_64/; s/aarch64/arm64/').tar.gz"
+          sha_path="${archive_path}.sha256"
+          test -f "$archive_path"
+          test -f "$sha_path"
+          python3 - "$archive_path" <<'PY'
+          import sys
+          import tarfile
+
+          archive_path = sys.argv[1]
+          with tarfile.open(archive_path, "r:gz") as archive:
+              names = archive.getnames()
+
+          assert any(name.endswith("share/spidervenoms/bundles/managed-local/release.json") for name in names)
+          assert any(name.endswith("bin/spiderweb-local-service") for name in names)
+          PY

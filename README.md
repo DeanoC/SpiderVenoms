@@ -19,7 +19,7 @@ manifests and release metadata from here.
 
 ## Release line
 
-- Current public release line: `0.5.1`
+- Current public release line: `0.5.2`
 - Release tags use `vX.Y.Z`
 - Default policy is patch-first release bumps
 
@@ -28,7 +28,7 @@ See [docs/release-policy.md](docs/release-policy.md) for the maintainer workflow
 ## Release automation
 
 - CI validates version sync, builds the bundle, and exercises the release packager.
-- Tagged releases publish a Linux managed-bundle archive for the current release line.
+- Tagged releases publish Linux and macOS managed-bundle archives for the current release line.
 
 Packaging helper:
 

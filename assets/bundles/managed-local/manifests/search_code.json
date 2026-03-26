@@ -3,13 +3,13 @@
   "package_id": "search_code",
   "kind": "search_code",
   "version": "1",
-  "release_version": "0.5.1",
+  "release_version": "0.5.2",
   "channel": "stable",
-  "digest": "sha256:search-code-v0.5.1",
+  "digest": "sha256:search-code-v0.5.2",
   "signature": {
     "scheme": "spider-dev-envelope-v1",
     "key_id": "spider-dev-local",
-    "value": "search-code-v0.5.1"
+    "value": "search-code-v0.5.2"
   },
   "trust": {
     "mode": "signed",

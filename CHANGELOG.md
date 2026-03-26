@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.2 - 2026-03-26
+
+### Release Packaging
+- Added a macOS managed-bundle release archive alongside the Linux archive so downstream consumers can pin a published SpiderVenoms artifact on both platforms.
+- Extended CI and tag-release automation to build, verify, and publish the macOS managed-local bundle archive.
+
 ## 0.5.1 - 2026-03-26
 
 ### Release Automation

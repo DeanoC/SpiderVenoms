@@ -32,3 +32,14 @@ This produces:
 - `dist/spidervenoms-managed-local-linux-<arch>.tar.gz.sha256`
 
 If `Spiderweb` is not checked out next to `SpiderVenoms`, set `SPIDERWEB_REPO_DIR` to its checkout path before running the packager.
+
+macOS managed-bundle archive:
+
+```bash
+./scripts/package-spidervenoms-macos-release.sh --out-dir ./dist
+```
+
+This produces:
+
+- `dist/spidervenoms-managed-local-macos-<arch>.tar.gz`
+- `dist/spidervenoms-managed-local-macos-<arch>.tar.gz.sha256`
