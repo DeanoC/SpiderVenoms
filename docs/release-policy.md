@@ -4,7 +4,7 @@ SpiderVenoms now uses a patch-first versioning policy.
 
 ## Current baseline
 
-- Current public release line: `0.5.0`
+- Current public release line: `0.5.1`
 - Release tags must use the format `vX.Y.Z`
 - `build.zig.zon` is the canonical version source
 

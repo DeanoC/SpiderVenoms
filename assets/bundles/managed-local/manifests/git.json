@@ -3,13 +3,13 @@
   "package_id": "git",
   "kind": "git",
   "version": "1",
-  "release_version": "0.5.0",
+  "release_version": "0.5.1",
   "channel": "stable",
-  "digest": "sha256:git-v0.5.0",
+  "digest": "sha256:git-v0.5.1",
   "signature": {
     "scheme": "spider-dev-envelope-v1",
     "key_id": "spider-dev-local",
-    "value": "git-v0.5.0"
+    "value": "git-v0.5.1"
   },
   "trust": {
     "mode": "signed",

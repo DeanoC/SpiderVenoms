@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.1 - 2026-03-26
+
+### Release Automation
+- Fixed the GitHub Actions archive verification step to inspect tar contents without tripping `pipefail` on `grep -q` early-exit behavior.
+- Re-ran the standalone `SpiderVenoms` tag-release path using the patch-first release policy.
+
 ## 0.5.0 - 2026-03-26
 
 ### Release and Versioning

@@ -87,8 +87,17 @@ jobs:
           sha_path="${{ steps.meta.outputs.archive_sha_path }}"
           test -f "$archive"
           test -f "$sha_path"
-          tar -tzf "$archive" | grep -q 'share/spidervenoms/bundles/managed-local/release.json'
-          tar -tzf "$archive" | grep -q 'bin/spiderweb-local-service'
+          python3 - "$archive" <<'PY'
+          import sys
+          import tarfile
+
+          archive_path = sys.argv[1]
+          with tarfile.open(archive_path, "r:gz") as archive:
+              names = archive.getnames()
+
+          assert any(name.endswith("share/spidervenoms/bundles/managed-local/release.json") for name in names)
+          assert any(name.endswith("bin/spiderweb-local-service") for name in names)
+          PY
 
       - name: Upload release artifacts
         uses: actions/upload-artifact@v4
