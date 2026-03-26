@@ -42,9 +42,13 @@ jobs:
       - name: Prepare OpenSSL
         run: |
           set -euo pipefail
+          if [[ "$(uname -s)" != "Darwin" ]]; then
+            command -v openssl >/dev/null 2>&1
+            exit 0
+          fi
           if [[ -x "/opt/homebrew/opt/openssl@3/bin/openssl" ]]; then
             echo "/opt/homebrew/opt/openssl@3/bin" >> "$GITHUB_PATH"
-          elif brew list openssl@3 >/dev/null 2>&1; then
+          elif command -v brew >/dev/null 2>&1 && brew list openssl@3 >/dev/null 2>&1; then
             echo "$(brew --prefix openssl@3)/bin" >> "$GITHUB_PATH"
           else
             brew install openssl@3

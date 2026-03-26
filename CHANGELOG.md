@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.6 - 2026-03-26
+
+### Release Automation
+- Fixed the OpenSSL preparation step to stay cross-platform: Linux jobs now keep using the system OpenSSL, while macOS jobs still opt into Homebrew OpenSSL 3 for Ed25519 verification support.
+
 ## 0.5.5 - 2026-03-26
 
 ### Release Automation

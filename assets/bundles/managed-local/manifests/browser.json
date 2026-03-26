@@ -3,13 +3,13 @@
   "package_id": "browser",
   "kind": "browser",
   "version": "1",
-  "release_version": "0.5.5",
+  "release_version": "0.5.6",
   "channel": "stable",
-  "digest": "sha256:40b6b256d9a62f4bb0ea093d136da34ea847dbec96913c9c76034d4ed69eba65",
+  "digest": "sha256:209e717a13b22e8e5c6ee0496caa029292029f5853074c8152dadc8cfa648a69",
   "signature": {
     "scheme": "ed25519-sha256-v1",
     "key_id": "spidervenoms-dev-2026-03",
-    "value": "XvKjQ90MkYaAC5EUyU55F4Sdyx0IePjPJj3znUxDlceNo0XP7gTqqSvrB9sgd6UPhE3VO5LtbmLjgVHAL/5JCA=="
+    "value": "EujuHFi5H5dXs+oC7e6OuDkZIekgkYkgbhNc5a9/O4ZyehJncUEDxIIC2gi4EPqx/XCiUAvBidtDLm8EGKqMDw=="
   },
   "trust": {
     "mode": "signed",
