@@ -4,7 +4,7 @@ SpiderVenoms now uses a patch-first versioning policy.
 
 ## Current baseline
 
-- Current public release line: `0.5.3`
+- Current public release line: `0.5.8`
 - Release tags must use the format `vX.Y.Z`
 - `build.zig.zon` is the canonical version source
 
@@ -61,6 +61,49 @@ Version consistency check:
 ```bash
 ./scripts/check-version-sync.sh
 ```
+
+Managed key policy validation:
+
+```bash
+./scripts/manage_managed_bundle_keys.py validate
+```
+
+## Key rotation and revocation
+
+Generate and activate a new signing key while demoting the current active key to `verify_only`:
+
+```bash
+./scripts/manage_managed_bundle_keys.py rotate \
+  --new-key-id spidervenoms-2026-04 \
+  --private-key-out ./keys/private/spidervenoms-2026-04.pem
+```
+
+This will:
+
+- generate a new Ed25519 private key
+- add the matching public key to `keys/trusted-managed-bundle-keys.json`
+- make the new key `active` + `sign_and_verify`
+- demote the previous active signing key to `verify_only`
+
+Inspect the current key policy:
+
+```bash
+./scripts/manage_managed_bundle_keys.py list
+```
+
+Revoke a key:
+
+```bash
+./scripts/manage_managed_bundle_keys.py revoke \
+  --key-id spidervenoms-2026-04 \
+  --reason "Compromised signing host"
+```
+
+Notes:
+
+- generated private keys should live outside Git; `keys/private/` is ignored for local maintainer workflows
+- revoking the last active signing key is blocked unless you pass `--allow-no-active-signer`
+- after rotation, re-sign `release.json` and `manifests/*.json` with the new key before publishing the next release
 
 ## Files that must stay aligned
 

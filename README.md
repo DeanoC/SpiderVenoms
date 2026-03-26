@@ -19,7 +19,7 @@ manifests and release metadata from here.
 
 ## Release line
 
-- Current public release line: `0.5.3`
+- Current public release line: `0.5.8`
 - Release tags use `vX.Y.Z`
 - Default policy is patch-first release bumps
 
@@ -30,10 +30,20 @@ See [docs/release-policy.md](docs/release-policy.md) for the maintainer workflow
 - CI validates version sync, builds the bundle, and exercises the release packager.
 - Tagged releases publish Linux and macOS managed-bundle archives for the current release line.
 - Maintainers sign `release.json` and `manifests/*.json` with `./scripts/managed_bundle_envelope.py sign`.
+- Maintainers manage key rotation and revocation with `./scripts/manage_managed_bundle_keys.py`.
 - Trusted keys now carry explicit policy metadata:
   - `status`: `active` or `revoked`
   - `usage`: `sign_and_verify` or `verify_only`
   - `bundle_purposes`: currently `managed_local_bundle`
+
+Key workflow helpers:
+
+```bash
+./scripts/manage_managed_bundle_keys.py list
+./scripts/manage_managed_bundle_keys.py validate
+./scripts/manage_managed_bundle_keys.py rotate --new-key-id spidervenoms-2026-04 --private-key-out ./keys/private/spidervenoms-2026-04.pem
+./scripts/manage_managed_bundle_keys.py revoke --key-id spidervenoms-2026-04 --reason "Compromised signing host"
+```
 
 Packaging helper:
 

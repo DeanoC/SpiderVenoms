@@ -89,5 +89,6 @@ print(f"version sync ok: {version}")
 PY
 
 if [[ "$skip_bundle_signature" != "1" ]]; then
+  python3 "$SCRIPT_DIR/manage_managed_bundle_keys.py" validate
   python3 "$SCRIPT_DIR/managed_bundle_envelope.py" verify
 fi
