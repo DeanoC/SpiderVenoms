@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.5 - 2026-03-26
+
+### Release Automation
+- Fixed the managed-bundle signature verifier to prefer OpenSSL 3 explicitly, which unblocks macOS GitHub runners from validating Ed25519 bundle signatures during CI and release jobs.
+- Updated the macOS workflows to expose a compatible OpenSSL 3 toolchain before running version-sync and release verification.
+
 ## 0.5.4 - 2026-03-26
 
 ### Bundle Trust

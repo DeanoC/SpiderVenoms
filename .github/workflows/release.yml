@@ -39,6 +39,18 @@ jobs:
         with:
           version: 0.15.1
 
+      - name: Prepare OpenSSL
+        run: |
+          set -euo pipefail
+          if [[ -x "/opt/homebrew/opt/openssl@3/bin/openssl" ]]; then
+            echo "/opt/homebrew/opt/openssl@3/bin" >> "$GITHUB_PATH"
+          elif brew list openssl@3 >/dev/null 2>&1; then
+            echo "$(brew --prefix openssl@3)/bin" >> "$GITHUB_PATH"
+          else
+            brew install openssl@3
+            echo "$(brew --prefix openssl@3)/bin" >> "$GITHUB_PATH"
+          fi
+
       - name: Resolve release metadata
         id: meta
         working-directory: SpiderVenoms

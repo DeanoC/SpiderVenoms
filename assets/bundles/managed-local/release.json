@@ -1,13 +1,13 @@
 {
   "bundle_id": "managed-local",
-  "release_version": "0.5.4",
-  "version": "0.5.4",
+  "release_version": "0.5.5",
+  "version": "0.5.5",
   "channel": "stable",
-  "digest": "sha256:5ae5811f07780b5a3ac3c709430d32db4aa34615c2edcdeacd3059a85e3ae08a",
+  "digest": "sha256:3b8940f66b57ddb17e4798281f4c27de92de8fc59375bcfe7a91dad4d01be11d",
   "signature": {
     "scheme": "ed25519-sha256-v1",
     "key_id": "spidervenoms-dev-2026-03",
-    "value": "RNRO4Q0RREXltUB5ooJaHxXME1rzFpVhTEpFdIJSwQuCYJqE2Fz8Lw7VIyCPilXuo4r5EbHtJ1VjwZgwtgmEBQ=="
+    "value": "I8nsWag8eiSt/z2MqVM5dbH/LjtRSeRTM2KqjTipzm5/r26vSiqYTVkJRfigzGNhYXpcwO+vdj+B6L/773jsCg=="
   },
   "trust": {
     "mode": "signed",
@@ -51,14 +51,14 @@
       "package_id": "terminal",
       "venom_id": "terminal",
       "kind": "terminal",
-      "release_version": "0.5.4",
-      "version": "0.5.4",
+      "release_version": "0.5.5",
+      "version": "0.5.5",
       "channel": "stable",
-      "digest": "sha256:c14fe16c396d4856f420aae668566db5dd0b66a0833249eaed7a33ba5a0437f9",
+      "digest": "sha256:ff4ff67fd45aff720015f2bbeefcc60203230d1b9341a451c1e53406337cab45",
       "signature": {
         "scheme": "ed25519-sha256-v1",
         "key_id": "spidervenoms-dev-2026-03",
-        "value": "lvPTiDFYlR6GwMzUiK7GtrYCwKJik2tuHfxcePdRpgSo7BgWDVbsFplo3oIc3ONEpOkCUShJc3IsM0u7sG5nAw=="
+        "value": "rbh52sFhR0W0/2ymDoR6Sc1i3RnP+jOWoWvSlMxsNCSalXydM8YCeiJocrLQKA4sbq7eqFioOFpPEqowAwsGCQ=="
       },
       "trust": {
         "mode": "signed",
@@ -77,14 +77,14 @@
       "package_id": "git",
       "venom_id": "git",
       "kind": "git",
-      "release_version": "0.5.4",
-      "version": "0.5.4",
+      "release_version": "0.5.5",
+      "version": "0.5.5",
       "channel": "stable",
-      "digest": "sha256:5bd664acf9445ea7b0a50486b9ddfe5e8762754e241fc35e8a9439312ae045a5",
+      "digest": "sha256:40a98d1c4916ed7a8d8d8b73f1fe459a43532971a38994ea3acf472395d6bc4f",
       "signature": {
         "scheme": "ed25519-sha256-v1",
         "key_id": "spidervenoms-dev-2026-03",
-        "value": "6j7TiGNeEHEXwjj7c4l+xuzGIbp927HPJciS3a9RIsA7kDUWko995sBgxgay81zPlMtaDDP8zX0FKbDEGzLZBQ=="
+        "value": "5SWKPHO4FXkTIIdXpTA2Jga4CDvqxnkbqQOzfXtOYsETktbnW85j8t18t1T8XrRANfqPUREpeZk7d45tyn07Aw=="
       },
       "trust": {
         "mode": "signed",
@@ -103,14 +103,14 @@
       "package_id": "search_code",
       "venom_id": "search_code",
       "kind": "search_code",
-      "release_version": "0.5.4",
-      "version": "0.5.4",
+      "release_version": "0.5.5",
+      "version": "0.5.5",
       "channel": "stable",
-      "digest": "sha256:d9244b01d555f2bba1658c3fb4daefea0dd61902e2e36250cdceec67b4293289",
+      "digest": "sha256:20e2460d1cc611bf5a968f6efd156760695bd95375b50dfb68f55aea1e9bd29f",
       "signature": {
         "scheme": "ed25519-sha256-v1",
         "key_id": "spidervenoms-dev-2026-03",
-        "value": "sMkeon8hJpqwr2NiYlFB/MJfxZyBr5suIaGhELczp1YtYgFch1wTZNKhyIK1w1+xWyxWMDSwbqfMwYM2CIe6BQ=="
+        "value": "WDURPxypoWs6EtGO/TjxnqbXXjV0JAZW5zhV6dAmgh3eGkM+Z5QlbjgRgIi5cseaSwSZQyVuMAduiVDpRyEyDg=="
       },
       "trust": {
         "mode": "signed",
@@ -129,14 +129,14 @@
       "package_id": "computer",
       "venom_id": "computer-main",
       "kind": "computer",
-      "release_version": "0.5.4",
-      "version": "0.5.4",
+      "release_version": "0.5.5",
+      "version": "0.5.5",
       "channel": "stable",
-      "digest": "sha256:fa23ac86d6310e8ecec2ff4264d98bde78a2ff26188792d7e0c7b7cec191c5ec",
+      "digest": "sha256:bf39c63e3ba42b9442d97b248c00df2a6d942a5780a01b75d21e8900e2f20d7f",
       "signature": {
         "scheme": "ed25519-sha256-v1",
         "key_id": "spidervenoms-dev-2026-03",
-        "value": "I5rSX1RV1HsLHzPgRw4nwKurr1uz7AczY4c/wNfWITuY2Z2FWC924naRUk1QGCofCV2qVH2u9YMEwIEPfXLGAA=="
+        "value": "CbUf8bXIFDwrh5Iy3JXQ3Kdi7jtodqvT2PRzh2c9TTy9dZm/kzTwXoKxijPfgK5p69/CxQZwChc0ON2s84zbAA=="
       },
       "trust": {
         "mode": "signed",
@@ -150,14 +150,14 @@
       "package_id": "browser",
       "venom_id": "browser-main",
       "kind": "browser",
-      "release_version": "0.5.4",
-      "version": "0.5.4",
+      "release_version": "0.5.5",
+      "version": "0.5.5",
       "channel": "stable",
-      "digest": "sha256:e4c071a35706ca6f623325b522000bf35b2ca4813a17af6590126644058d5d14",
+      "digest": "sha256:29368f0a46fbfd1f6306b31e63319d45c101d3a563d8c5f3464509cacb864691",
       "signature": {
         "scheme": "ed25519-sha256-v1",
         "key_id": "spidervenoms-dev-2026-03",
-        "value": "iSqxgZRWmB7Otu9aIbkKuOtyctaTf8sf4DznC+vY4qoIltKttKf9lfStkukagYomuhyIL8GE6UYJQVC1d1QsDw=="
+        "value": "nUGq1IBlPBABkIk09dV5fbKqjDWFkMVH1Ix2zYq3XyHbFRJQgcLN/B9oVnTzrI1Lxxa9AlxsD8t5RfLpopjaDg=="
       },
       "trust": {
         "mode": "signed",

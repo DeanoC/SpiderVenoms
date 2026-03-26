@@ -6,6 +6,8 @@ import base64
 import hashlib
 import json
 import pathlib
+import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -68,15 +70,33 @@ def load_trusted_keys(keys_path: pathlib.Path) -> dict[str, dict[str, str]]:
     return keys
 
 
-def require_command(name: str) -> None:
-    try:
-        subprocess.run([name, "version"], check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    except FileNotFoundError:
-        fail(f"{name} is required")
+def resolve_openssl() -> str:
+    candidates = [
+        os.environ.get("OPENSSL_BIN"),
+        "/opt/homebrew/opt/openssl@3/bin/openssl",
+        "/usr/local/opt/openssl@3/bin/openssl",
+        shutil.which("openssl"),
+    ]
+    for candidate in candidates:
+        if not candidate:
+            continue
+        path = pathlib.Path(candidate)
+        if not path.exists():
+            continue
+        version_result = subprocess.run(
+            [str(path), "version"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        version_output = (version_result.stdout + version_result.stderr).strip()
+        if "OpenSSL" in version_output and "LibreSSL" not in version_output:
+            return str(path)
+    fail("OpenSSL 3 is required for Ed25519 managed-bundle signing and verification")
 
 
 def sign_digest(private_key_path: pathlib.Path, digest_hex: str) -> str:
-    require_command("openssl")
+    openssl_bin = resolve_openssl()
     digest_bytes = bytes.fromhex(digest_hex)
     with tempfile.TemporaryDirectory() as tmpdir:
         digest_path = pathlib.Path(tmpdir) / "digest.bin"
@@ -84,7 +104,7 @@ def sign_digest(private_key_path: pathlib.Path, digest_hex: str) -> str:
         digest_path.write_bytes(digest_bytes)
         subprocess.run(
             [
-                "openssl",
+                openssl_bin,
                 "pkeyutl",
                 "-sign",
                 "-inkey",
@@ -101,7 +121,7 @@ def sign_digest(private_key_path: pathlib.Path, digest_hex: str) -> str:
 
 
 def verify_digest_signature(public_key_hex: str, digest_hex: str, signature_b64: str) -> None:
-    require_command("openssl")
+    openssl_bin = resolve_openssl()
     digest_bytes = bytes.fromhex(digest_hex)
     signature = base64.b64decode(signature_b64, validate=True)
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -113,7 +133,7 @@ def verify_digest_signature(public_key_hex: str, digest_hex: str, signature_b64:
         public_key_path.write_text(raw_public_key_pem(public_key_hex))
         subprocess.run(
             [
-                "openssl",
+                openssl_bin,
                 "pkeyutl",
                 "-verify",
                 "-pubin",
