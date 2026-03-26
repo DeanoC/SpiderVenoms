@@ -131,11 +131,19 @@ for path in text_files[1:]:
     path.write_text(path.read_text().replace(current, new))
 PY
 
-"$SCRIPT_DIR/check-version-sync.sh"
+if [[ -n "${SPIDERVENOMS_SIGNING_KEY_PATH:-}" ]]; then
+  python3 "$SCRIPT_DIR/managed_bundle_envelope.py" sign \
+    --key-id "${SPIDERVENOMS_SIGNING_KEY_ID:-spidervenoms-dev-2026-03}" \
+    --private-key "$SPIDERVENOMS_SIGNING_KEY_PATH"
+  "$SCRIPT_DIR/check-version-sync.sh"
+else
+  "$SCRIPT_DIR/check-version-sync.sh" --skip-bundle-signature
+fi
 
 cat <<EOF
 Next steps:
   1. Update the top CHANGELOG.md entry to ${next_version} if needed.
-  2. Commit the version bump.
-  3. Tag the release as v${next_version} when ready.
+  2. Run ./scripts/managed_bundle_envelope.py sign --key-id \${SPIDERVENOMS_SIGNING_KEY_ID:-spidervenoms-dev-2026-03} --private-key <signing-key> if signatures were skipped.
+  3. Commit the version bump.
+  4. Tag the release as v${next_version} when ready.
 EOF

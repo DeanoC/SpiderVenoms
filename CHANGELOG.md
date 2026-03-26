@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.4 - 2026-03-26
+
+### Bundle Trust
+- Replaced the managed-local bundle's placeholder signature envelope with real `ed25519-sha256-v1` digests and signatures across `release.json` and all published manifests.
+- Added maintainer signing and verification tooling so version bumps can re-sign the bundle metadata without hand-editing digests.
+- Added a trusted-key registry for the managed-local bundle and CI-ready verification hooks for the signed envelope.
+
 ## 0.5.3 - 2026-03-26
 
 ### Linux Release Coverage

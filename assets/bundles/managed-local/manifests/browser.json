@@ -3,13 +3,13 @@
   "package_id": "browser",
   "kind": "browser",
   "version": "1",
-  "release_version": "0.5.3",
+  "release_version": "0.5.4",
   "channel": "stable",
-  "digest": "sha256:browser-v0.5.3",
+  "digest": "sha256:aa6c63e76f6947043e141650977b704e5cc83bcb97225689df2bcfd5ca6dd796",
   "signature": {
-    "scheme": "spider-dev-envelope-v1",
-    "key_id": "spider-dev-local",
-    "value": "browser-v0.5.3"
+    "scheme": "ed25519-sha256-v1",
+    "key_id": "spidervenoms-dev-2026-03",
+    "value": "SLgKPMVpFsOy1Up1mD1BmLXSQVLE9E6+RtcfjbxotApdmafcwCcHUeghkwFlccIIx4xcpzwTczO/iClE6tb4BQ=="
   },
   "trust": {
     "mode": "signed",
@@ -18,14 +18,25 @@
   },
   "enabled": true,
   "state": "online",
-  "categories": ["browser", "automation"],
-  "host_roles": ["node"],
-  "binding_scopes": ["workspace"],
+  "categories": [
+    "browser",
+    "automation"
+  ],
+  "host_roles": [
+    "node"
+  ],
+  "binding_scopes": [
+    "workspace"
+  ],
   "runtime_kind": "native",
   "requirements": {
-    "host_capabilities": ["managed_browser"]
+    "host_capabilities": [
+      "managed_browser"
+    ]
   },
-  "endpoints": ["/nodes/{node_id}/venoms/browser-main"],
+  "endpoints": [
+    "/nodes/{node_id}/venoms/browser-main"
+  ],
   "mounts": [
     {
       "mount_id": "browser-main",

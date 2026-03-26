@@ -3,13 +3,13 @@
   "package_id": "search_code",
   "kind": "search_code",
   "version": "1",
-  "release_version": "0.5.3",
+  "release_version": "0.5.4",
   "channel": "stable",
-  "digest": "sha256:search-code-v0.5.3",
+  "digest": "sha256:9d4b7d16758a05e27d97556b38e0d74b9c353a62a82bda55c6d8de9722388026",
   "signature": {
-    "scheme": "spider-dev-envelope-v1",
-    "key_id": "spider-dev-local",
-    "value": "search-code-v0.5.3"
+    "scheme": "ed25519-sha256-v1",
+    "key_id": "spidervenoms-dev-2026-03",
+    "value": "PfXkhFO9k4omy7YHOrdTvYDGu/43qzZL8p5gyN0yQ8iWLps7IIoRLwTUQOZtsULsl5dh3TSwaiH8AZtD2AOKDA=="
   },
   "trust": {
     "mode": "signed",
@@ -17,12 +17,21 @@
     "allow_dev_unsigned": false
   },
   "state": "online",
-  "categories": ["search", "code"],
-  "host_roles": ["node"],
-  "binding_scopes": ["workspace"],
+  "categories": [
+    "search",
+    "code"
+  ],
+  "host_roles": [
+    "node"
+  ],
+  "binding_scopes": [
+    "workspace"
+  ],
   "runtime_kind": "native",
   "requirements": {},
-  "endpoints": ["/nodes/{node_id}/venoms/search_code"],
+  "endpoints": [
+    "/nodes/{node_id}/venoms/search_code"
+  ],
   "mounts": [
     {
       "mount_id": "search_code",
@@ -33,7 +42,9 @@
   "capabilities": {
     "invoke": true,
     "discoverable": true,
-    "operations": ["search"]
+    "operations": [
+      "search"
+    ]
   },
   "ops": {
     "model": "namespace",
@@ -46,12 +57,18 @@
     "type": "native_proc",
     "abi": "namespace-driver-v1",
     "executable_path": "__EXECUTABLE_PATH__",
-    "args": ["search_code", "__EXPORT_ROOT__"],
+    "args": [
+      "search_code",
+      "__EXPORT_ROOT__"
+    ],
     "timeout_ms": 300000
   },
   "permissions": {
     "default": "allow-by-default",
-    "allow_roles": ["admin", "user"],
+    "allow_roles": [
+      "admin",
+      "user"
+    ],
     "scope": "project"
   },
   "schema": {
