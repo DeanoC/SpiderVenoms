@@ -1,0 +1,30 @@
+{
+  "spidervenoms-dev-2026-03": {
+    "publisher": "SpiderVenoms",
+    "scheme": "ed25519-sha256-v1",
+    "public_key_hex": "b15238a1a3948fb8c1a77d22313a05448e07ba93469ae7d46e75762c73992f24",
+    "status": "active",
+    "usage": "sign_and_verify",
+    "bundle_purposes": [
+      "managed_local_bundle"
+    ],
+    "created_at": "2026-03-26T00:00:00Z",
+    "rotates_after": null,
+    "revoked_at": null,
+    "revocation_reason": null
+  },
+  "spidervenoms-revoked-2026-03": {
+    "publisher": "SpiderVenoms",
+    "scheme": "ed25519-sha256-v1",
+    "public_key_hex": "373a430931addf8dba153124c73070b3f2dd7f12f6229f055ee0622190a86cbf",
+    "status": "revoked",
+    "usage": "verify_only",
+    "bundle_purposes": [
+      "managed_local_bundle"
+    ],
+    "created_at": "2026-03-26T00:00:00Z",
+    "rotates_after": null,
+    "revoked_at": "2026-03-26T12:40:00Z",
+    "revocation_reason": "Fixture key kept only to exercise bundle revocation checks."
+  }
+}

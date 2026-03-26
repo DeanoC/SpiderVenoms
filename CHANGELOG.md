@@ -2,6 +2,36 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.8 - 2026-03-26
+
+### Bundle Integrity
+- Fixed managed-bundle canonicalization so only the top-level envelope strips `digest` and `signature`, while nested signed fields remain part of the hashed payload.
+- Re-signed the managed-local bundle with the stricter canonicalization so downstream verifiers can enforce the stronger integrity rule.
+
+## 0.5.7 - 2026-03-26
+
+### Key Policy
+- Added explicit signing-key policy metadata for managed bundles, including key status, usage mode, bundle purpose, and revocation metadata.
+- Added negative-path policy checks that reject tampered bundles, revoked keys, wrong-purpose keys, and verify-only signing attempts in CI.
+
+## 0.5.6 - 2026-03-26
+
+### Release Automation
+- Fixed the OpenSSL preparation step to stay cross-platform: Linux jobs now keep using the system OpenSSL, while macOS jobs still opt into Homebrew OpenSSL 3 for Ed25519 verification support.
+
+## 0.5.5 - 2026-03-26
+
+### Release Automation
+- Fixed the managed-bundle signature verifier to prefer OpenSSL 3 explicitly, which unblocks macOS GitHub runners from validating Ed25519 bundle signatures during CI and release jobs.
+- Updated the macOS workflows to expose a compatible OpenSSL 3 toolchain before running version-sync and release verification.
+
+## 0.5.4 - 2026-03-26
+
+### Bundle Trust
+- Replaced the managed-local bundle's placeholder signature envelope with real `ed25519-sha256-v1` digests and signatures across `release.json` and all published manifests.
+- Added maintainer signing and verification tooling so version bumps can re-sign the bundle metadata without hand-editing digests.
+- Added a trusted-key registry for the managed-local bundle and CI-ready verification hooks for the signed envelope.
+
 ## 0.5.3 - 2026-03-26
 
 ### Linux Release Coverage

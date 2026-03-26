@@ -3,13 +3,13 @@
   "package_id": "terminal",
   "kind": "terminal",
   "version": "1",
-  "release_version": "0.5.3",
+  "release_version": "0.5.8",
   "channel": "stable",
-  "digest": "sha256:terminal-v0.5.3",
+  "digest": "sha256:1a1f04e29687db1d0b6582987437cedfc78510783d95023a660e254887d7babd",
   "signature": {
-    "scheme": "spider-dev-envelope-v1",
-    "key_id": "spider-dev-local",
-    "value": "terminal-v0.5.3"
+    "scheme": "ed25519-sha256-v1",
+    "key_id": "spidervenoms-dev-2026-03",
+    "value": "TCgK3NYC6YEsuQejtnxBsFOXm5439IVn6Oy4Ml7EpVwpbDmobzl/GWTVNu+kzHuPPc334MJjsVsNyjyZRwvrDw=="
   },
   "trust": {
     "mode": "signed",
@@ -17,12 +17,21 @@
     "allow_dev_unsigned": false
   },
   "state": "online",
-  "categories": ["terminal", "exec"],
-  "host_roles": ["node"],
-  "binding_scopes": ["workspace"],
+  "categories": [
+    "terminal",
+    "exec"
+  ],
+  "host_roles": [
+    "node"
+  ],
+  "binding_scopes": [
+    "workspace"
+  ],
   "runtime_kind": "native",
   "requirements": {},
-  "endpoints": ["/nodes/{node_id}/venoms/terminal"],
+  "endpoints": [
+    "/nodes/{node_id}/venoms/terminal"
+  ],
   "mounts": [
     {
       "mount_id": "terminal",
@@ -33,7 +42,9 @@
   "capabilities": {
     "invoke": true,
     "discoverable": true,
-    "operations": ["exec"]
+    "operations": [
+      "exec"
+    ]
   },
   "ops": {
     "model": "namespace",
@@ -46,12 +57,18 @@
     "type": "native_proc",
     "abi": "namespace-driver-v1",
     "executable_path": "__EXECUTABLE_PATH__",
-    "args": ["terminal", "__EXPORT_ROOT__"],
+    "args": [
+      "terminal",
+      "__EXPORT_ROOT__"
+    ],
     "timeout_ms": 300000
   },
   "permissions": {
     "default": "allow-by-default",
-    "allow_roles": ["admin", "user"],
+    "allow_roles": [
+      "admin",
+      "user"
+    ],
     "scope": "project"
   },
   "schema": {

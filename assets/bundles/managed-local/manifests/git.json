@@ -3,13 +3,13 @@
   "package_id": "git",
   "kind": "git",
   "version": "1",
-  "release_version": "0.5.3",
+  "release_version": "0.5.8",
   "channel": "stable",
-  "digest": "sha256:git-v0.5.3",
+  "digest": "sha256:2f93b8cd3ae6dd87ead6414bbb08d6ed068ba52598a13ff5cbb9fb34f7db5e7e",
   "signature": {
-    "scheme": "spider-dev-envelope-v1",
-    "key_id": "spider-dev-local",
-    "value": "git-v0.5.3"
+    "scheme": "ed25519-sha256-v1",
+    "key_id": "spidervenoms-dev-2026-03",
+    "value": "Xu3Ss+mKDwmklGAy1nkBro5kLReZIVvLBPaZhS7to/EOmUhdns3Oy1+4C7E+/nHor35IAiIo7Il30BPgd4cLDw=="
   },
   "trust": {
     "mode": "signed",
@@ -17,14 +17,25 @@
     "allow_dev_unsigned": false
   },
   "state": "online",
-  "categories": ["developer", "scm"],
-  "host_roles": ["node"],
-  "binding_scopes": ["workspace"],
+  "categories": [
+    "developer",
+    "scm"
+  ],
+  "host_roles": [
+    "node"
+  ],
+  "binding_scopes": [
+    "workspace"
+  ],
   "runtime_kind": "native",
   "requirements": {
-    "host_capabilities": ["local_fs_export"]
+    "host_capabilities": [
+      "local_fs_export"
+    ]
   },
-  "endpoints": ["/nodes/{node_id}/venoms/git"],
+  "endpoints": [
+    "/nodes/{node_id}/venoms/git"
+  ],
   "mounts": [
     {
       "mount_id": "git",
@@ -35,7 +46,11 @@
   "capabilities": {
     "invoke": true,
     "discoverable": true,
-    "operations": ["sync_checkout", "status", "diff_range"]
+    "operations": [
+      "sync_checkout",
+      "status",
+      "diff_range"
+    ]
   },
   "ops": {
     "model": "namespace",
@@ -48,12 +63,18 @@
     "type": "native_proc",
     "abi": "namespace-driver-v1",
     "executable_path": "__EXECUTABLE_PATH__",
-    "args": ["git", "__EXPORT_ROOT__"],
+    "args": [
+      "git",
+      "__EXPORT_ROOT__"
+    ],
     "timeout_ms": 300000
   },
   "permissions": {
     "default": "allow-by-default",
-    "allow_roles": ["admin", "user"],
+    "allow_roles": [
+      "admin",
+      "user"
+    ],
     "scope": "project"
   },
   "schema": {
