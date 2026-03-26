@@ -31,6 +31,11 @@ This produces:
 - `dist/spidervenoms-managed-local-linux-<arch>.tar.gz`
 - `dist/spidervenoms-managed-local-linux-<arch>.tar.gz.sha256`
 
+Published Linux archives are supported for:
+
+- `linux/x86_64`
+- `linux/arm64`
+
 If `Spiderweb` is not checked out next to `SpiderVenoms`, set `SPIDERWEB_REPO_DIR` to its checkout path before running the packager.
 
 macOS managed-bundle archive:

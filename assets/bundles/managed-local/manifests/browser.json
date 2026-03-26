@@ -3,13 +3,13 @@
   "package_id": "browser",
   "kind": "browser",
   "version": "1",
-  "release_version": "0.5.2",
+  "release_version": "0.5.3",
   "channel": "stable",
-  "digest": "sha256:browser-v0.5.2",
+  "digest": "sha256:browser-v0.5.3",
   "signature": {
     "scheme": "spider-dev-envelope-v1",
     "key_id": "spider-dev-local",
-    "value": "browser-v0.5.2"
+    "value": "browser-v0.5.3"
   },
   "trust": {
     "mode": "signed",
