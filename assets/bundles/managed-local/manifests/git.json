@@ -3,13 +3,13 @@
   "package_id": "git",
   "kind": "git",
   "version": "1",
-  "release_version": "0.5.7",
+  "release_version": "0.5.8",
   "channel": "stable",
-  "digest": "sha256:c0aa416076e08481abc5d7e2d4ab0e4b0e003c37f61dff107a04fca565f95609",
+  "digest": "sha256:2f93b8cd3ae6dd87ead6414bbb08d6ed068ba52598a13ff5cbb9fb34f7db5e7e",
   "signature": {
     "scheme": "ed25519-sha256-v1",
     "key_id": "spidervenoms-dev-2026-03",
-    "value": "m2/LyB6SwsVCUCIF3sPEYuvqhQJLJdtBr879QKCAJiuTOxQ5/lbLFTq/faz4aIum4E9X7DPAw6PbtfZac8rtCQ=="
+    "value": "Xu3Ss+mKDwmklGAy1nkBro5kLReZIVvLBPaZhS7to/EOmUhdns3Oy1+4C7E+/nHor35IAiIo7Il30BPgd4cLDw=="
   },
   "trust": {
     "mode": "signed",

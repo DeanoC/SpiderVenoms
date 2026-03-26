@@ -1,6 +1,6 @@
 .{
     .name = .spider_venoms,
-    .version = "0.5.7",
+    .version = "0.5.8",
     .fingerprint = 0xff0d3f73aa16a623,
     .minimum_zig_version = "0.13.0",
     .dependencies = .{

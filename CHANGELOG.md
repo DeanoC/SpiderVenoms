@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## 0.5.8 - 2026-03-26
+
+### Bundle Integrity
+- Fixed managed-bundle canonicalization so only the top-level envelope strips `digest` and `signature`, while nested signed fields remain part of the hashed payload.
+- Re-signed the managed-local bundle with the stricter canonicalization so downstream verifiers can enforce the stronger integrity rule.
+
 ## 0.5.7 - 2026-03-26
 
 ### Key Policy

@@ -26,21 +26,23 @@ def fail(message: str) -> "NoReturn":
     raise SystemExit(1)
 
 
-def canonical_json(value: Any) -> str:
+def canonical_json(value: Any, *, strip_envelope_fields: bool = False) -> str:
     if isinstance(value, dict):
         parts: list[str] = []
         for key in sorted(value):
-            if key in {"digest", "signature"}:
+            if strip_envelope_fields and key in {"digest", "signature"}:
                 continue
-            parts.append(f"{json.dumps(key, ensure_ascii=False, separators=(',', ':'))}:{canonical_json(value[key])}")
+            parts.append(
+                f"{json.dumps(key, ensure_ascii=False, separators=(',', ':'))}:{canonical_json(value[key], strip_envelope_fields=False)}"
+            )
         return "{" + ",".join(parts) + "}"
     if isinstance(value, list):
-        return "[" + ",".join(canonical_json(item) for item in value) + "]"
+        return "[" + ",".join(canonical_json(item, strip_envelope_fields=False) for item in value) + "]"
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"), sort_keys=False)
 
 
 def payload_bytes(value: Any) -> bytes:
-    return canonical_json(value).encode("utf-8")
+    return canonical_json(value, strip_envelope_fields=True).encode("utf-8")
 
 
 def payload_digest_hex(value: Any) -> str:

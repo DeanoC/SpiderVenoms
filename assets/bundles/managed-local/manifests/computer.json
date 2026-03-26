@@ -3,13 +3,13 @@
   "package_id": "computer",
   "kind": "computer",
   "version": "1",
-  "release_version": "0.5.7",
+  "release_version": "0.5.8",
   "channel": "stable",
-  "digest": "sha256:8507d8c823837809050c401b0b09e0eea0c76b770b35a9cd6231b54db6ec1727",
+  "digest": "sha256:7c0c02cb2819f933adbe0b6a026c2142a80f82bd28a6e4910be736e547d94f02",
   "signature": {
     "scheme": "ed25519-sha256-v1",
     "key_id": "spidervenoms-dev-2026-03",
-    "value": "vZdkiqjaZBlJ2rMS265ECwtsFYyzKO3qnCAQsGoFxSzhPx6MWYJZiBeK2BRlP3vRZHeyaNQMKZsdefN+bDgABQ=="
+    "value": "XnvtmH6km1g3Kz0j7OApb/JQfsQdJn/AHZ121UenlXMo/7FAzInH4eXtGHyNY2+vxS5Y9IcNaFR+HraftYc/Dg=="
   },
   "trust": {
     "mode": "signed",
